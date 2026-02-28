@@ -1,11 +1,6 @@
-import express from "express";
+import { buildApp } from "./app";
 
-const app = express();
-app.use(express.json());
-
-app.get("/health", (_req, res) => {
-  res.status(200).json({ ok: true });
-});
+const app = buildApp();
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
