@@ -1,5 +1,6 @@
 import express from "express";
 import { postRoutes } from "./ports/rest/routes/postRoutes";
+import { errorHandler } from "./ports/rest/middleware/errorHandler";
 
 export function buildApp() {
   const app = express();
@@ -12,6 +13,7 @@ export function buildApp() {
 
   // Posts routes
   app.use("/api/posts", postRoutes());
+  app.use(errorHandler);
 
   return app;
 }
