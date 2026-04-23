@@ -3,7 +3,7 @@ import { postRoutes } from "./ports/rest/routes/postRoutes";
 import { errorHandler } from "./ports/rest/middleware/errorHandler";
 import { requestLogger } from "./ports/rest/middleware/requestLogger";
 import { aiRoutes } from "./ports/rest/routes/aiRoutes";
-
+import userRoutes from "./ports/rest/routes/userRoutes";
 export function buildApp() {
   const app = express();
   app.use(express.json());
@@ -17,6 +17,7 @@ export function buildApp() {
   // Posts routes
   app.use("/api/posts", postRoutes());
   app.use("/api/ai", aiRoutes());
+  app.use("/api/user", userRoutes);
   app.use(errorHandler);
 
   return app;
