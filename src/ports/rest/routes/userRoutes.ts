@@ -5,12 +5,12 @@ const router = Router();
 
 router.post("/register", async (req: Request, res: Response) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
     if (!username || !password) {
       res.status(400).json({ message: "Username and password are required" });
       return;
     }
-    const user = await registerUser(username, password);
+    const user = await registerUser(username, password, role);
     res.status(201).json({ message: "User created successfully", user });
   } catch (error: any) {
     res.status(400).json({ message: error.message });

@@ -5,6 +5,8 @@ import { requestLogger } from "./ports/rest/middleware/requestLogger";
 import { aiRoutes } from "./ports/rest/routes/aiRoutes";
 import userRoutes from "./ports/rest/routes/userRoutes";
 import { commentRoutes } from "./ports/rest/routes/commentRoutes";
+import { adminRoutes } from "./ports/rest/routes/adminRoutes";
+import { superUserRoutes } from "./ports/rest/routes/SuperUserRoutes";
 
 export function buildApp() {
   const app = express();
@@ -24,6 +26,12 @@ export function buildApp() {
 
   // User routes
   app.use("/api/user", userRoutes);
+
+  // Admin routes
+  app.use("/api/admin", adminRoutes());
+
+  // Super user routes
+  app.use("/api/superuser/posts", superUserRoutes());
 
   // AI routes
   app.use("/api/ai", aiRoutes());
